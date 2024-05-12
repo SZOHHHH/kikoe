@@ -1,0 +1,41 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\SZOH\\.ohos\\config\\auto_debug_DEVPRO_com.example.music_70086000326140011.cer",
+          "storePassword": "0000001B7B8EE9606B133DC664A7F8BDEF73FE40A2E647D360C70728DA061AE7501FA1736F770D72A217D1",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B40647DE081743F39E49906E3E9A4CCC88C036EB7805000F15698A78B79E449BCDDF2873B3294DA",
+          "profile": "C:\\Users\\SZOH\\.ohos\\config\\auto_debug_DEVPRO_com.example.music_70086000326140011.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\SZOH\\.ohos\\config\\auto_debug_DEVPRO_com.example.music_70086000326140011.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
