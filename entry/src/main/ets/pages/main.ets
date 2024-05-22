@@ -1,4 +1,5 @@
 import { DrawerLayout } from '@smarthane/drawer-layout'
+import router from '@ohos.router';
 
 @Component
 export struct main {
@@ -82,6 +83,7 @@ export struct main {
       .width(320)
       .height(200)
       .border({ width:'8px', color:'#ffb5b5b5' })
+      .onClick(() => {router.pushUrl({url: 'pages/musicdetail'})})
     }
     .justifyContent(FlexAlign.Start)
     .width('100%')
