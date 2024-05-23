@@ -17,26 +17,36 @@ struct PlayPage {
   songList: SongItem[] = MusicList;
   @StorageProp('selectIndex') selectIndex: number = 0;
 
-  build() {
-    Stack({ alignContent: Alignment.TopStart }) {
-      if (this.currentBreakpoint === PlayConstants.LG) {
-        Stack({ alignContent: Alignment.Top }) {
+  build()
+  {
+    Stack({ alignContent: Alignment.TopStart })
+    {
+      if (this.currentBreakpoint === PlayConstants.LG)
+      {
+        Stack({ alignContent: Alignment.Top })
+        {
           LyricsComponent()
 
-          Flex({ direction: FlexDirection.Column }) {
+          Flex({ direction: FlexDirection.Column })
+          {
             MusicInfoComponent()
             ControlComponent()
           }
         }
-      } else {
-        Flex({ direction: FlexDirection.Column }) {
-          Tabs({ barPosition: BarPosition.Start, index: this.currentTabIndex }) {
-            TabContent() {
+      } else
+      {
+        Flex({ direction: FlexDirection.Column })
+        {
+          Tabs({ barPosition: BarPosition.Start, index: this.currentTabIndex })
+          {
+            TabContent()
+            {
               MusicInfoComponent()
             }
             .tabBar(this.TabTitle(PlayConstants.TAB_SONG, 0))
 
-            TabContent() {
+            TabContent()
+            {
               LyricsComponent()
             }
             .tabBar(this.TabTitle(PlayConstants.TAB_LYRICS, 1))

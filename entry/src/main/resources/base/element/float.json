@@ -790,11 +790,11 @@
     },
     {
       "name": "cover_image_width",
-      "value": "296vp"
+      "value": "120vp"
     },
     {
       "name": "cover_image_width_lg",
-      "value": "452vp"
+      "value": "120vp"
     },    {
       "name": "phone_title_font_size",
       "value": "28fp"

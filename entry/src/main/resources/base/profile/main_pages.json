@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/tabs"
+    "pages/tabs",
+    "pages/musicdetail"
   ]
 }

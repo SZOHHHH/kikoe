@@ -31,10 +31,12 @@ export struct MusicInfoComponent {
   @StorageProp('selectIndex') selectIndex: number = 0;
   songList: SongItem[] = MusicList;
 
-  build() {
+  build()
+  {
     Column() {
       GridRow({
-        columns: {
+        columns:
+        {
           sm: PlayConstants.COLUMN_FOUR,
           md: PlayConstants.COLUMN_EIGHT,
           lg: PlayConstants.COLUMN_TWELVE
@@ -42,7 +44,8 @@ export struct MusicInfoComponent {
         gutter: PlayConstants.GRID_COL_GUTTER
       }) {
         GridCol({
-          span: {
+          span:
+          {
             sm: PlayConstants.SPAN_FOUR,
             md: PlayConstants.SPAN_FOUR,
             lg: PlayConstants.SPAN_FOUR
