@@ -5,7 +5,7 @@ import router from '@ohos.router';
 struct Index
 {
   @State message1: string = '114*******810'
-  @State message2: string = '中国电信提供认证服务'
+  @State message2: string = '电信提供认证服务'
   @Styles
   imgStyle()
   {
