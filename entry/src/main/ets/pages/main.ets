@@ -83,7 +83,7 @@ export struct main {
       .width(320)
       .height(200)
       .border({ width:'8px', color:'#ffb5b5b5' })
-      .onClick(() => {router.pushUrl({url: 'pages/musicdetail'})})
+      .onClick(() => {router.pushUrl({url: 'pages/fileread'})})
     }
     .justifyContent(FlexAlign.Start)
     .width('100%')

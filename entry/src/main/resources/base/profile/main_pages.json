@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/tabs",
-    "pages/musicdetail"
+    "pages/musicdetail",
+    "pages/fileread"
   ]
 }

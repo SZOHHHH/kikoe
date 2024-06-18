@@ -96,28 +96,7 @@ export struct MusicInfoComponent {
 
   @Builder
   CoverInfo() {
-    Image(this.songList[this.selectIndex].label)
-      .constraintSize({ maxWidth: new BreakpointType({
-        sm: $r('app.float.cover_image_width'),
-        md: $r('app.float.cover_image_width'),
-        lg: $r('app.float.cover_image_width_lg')
-      }).getValue(this.currentBreakpoint) })
-      .width(StyleConstants.FULL_WIDTH)
-      .aspectRatio(1)
-      .borderRadius($r('app.float.cover_radius'))
-      .margin({
-        left: new BreakpointType({
-          sm: $r('app.float.music_play_cover_margin_left_sm')
-        }).getValue(this.currentBreakpoint),
-        right: new BreakpointType({
-          sm: $r('app.float.music_play_cover_margin_right_sm')
-        }).getValue(this.currentBreakpoint),
-        top: new BreakpointType({
-          sm: $r('app.float.music_play_cover_margin_top_sm'),
-          md: $r('app.float.music_play_cover_margin_top_md'),
-          lg: $r('app.float.music_play_cover_margin_top_lg')
-        }).getValue(this.currentBreakpoint)
-      })
+
   }
 
   @Builder

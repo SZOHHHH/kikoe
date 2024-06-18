@@ -47,7 +47,6 @@ struct PlayPage {
 
             TabContent()
             {
-              LyricsComponent()
             }
             .tabBar(this.TabTitle(PlayConstants.TAB_LYRICS, 1))
           }
@@ -66,7 +65,6 @@ struct PlayPage {
         .margin({ left: $r('app.float.twenty_four'), top: $r('app.float.image_back_margin_top') })
         .onClick(() => router.back())
     }
-    .backgroundImage(this.songList[this.selectIndex].label)
     .backgroundImageSize(ImageSize.Cover)
     .backdropBlur(PlayConstants.BLUR)
     .linearGradient({
@@ -96,7 +94,8 @@ struct PlayPage {
       .padding({ bottom: $r('app.float.tab_text_padding_bottom') })
   }
 
-  pageTransition() {
+  pageTransition()
+  {
     PageTransitionEnter({ duration: PlayConstants.FIVE_HUNDRED, curve: Curve.Smooth }).slide(SlideEffect.Bottom);
     PageTransitionExit({ duration: PlayConstants.FIVE_HUNDRED, curve: Curve.Smooth }).slide(SlideEffect.Bottom);
   }
