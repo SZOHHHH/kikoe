@@ -111,6 +111,34 @@
     {
       "name": "button_background_color",
       "value": "#FF1949"
+    },
+    {
+      "name": "text_normal",
+      "value": "#E5000000"
+    },
+    {
+      "name": "button_light_gray",
+      "value": "#0D182431"
+    },
+    {
+      "name": "button_blue",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "btn_text_blue",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "maskColor",
+      "value": "#66000000"
+    },
+    {
+      "name": "gray",
+      "value": "#F7F7F7"
+    },
+    {
+      "name": "light_gray",
+      "value": "#F1F3F5"
     }
   ]
 }

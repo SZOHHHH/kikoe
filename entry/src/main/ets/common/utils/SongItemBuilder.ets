@@ -28,6 +28,7 @@ export default class SongItemBuilder {
     if (!this.context) {
       return this.songItem;
     }
+    // @ts-ignore
     let rawfileFd = await this.context.resourceManager.getRawFd(songItem.src)
       .catch((error: Error) => {
         Logger.error(`resourceManager error cause : ${JSON.stringify(error)}`);
@@ -47,6 +48,7 @@ export default class SongItemBuilder {
 
   public async release(): Promise<void> {
     if (this.context && this.context !== null && this.songItem !== null) {
+      // @ts-ignore
       this.context.resourceManager.closeRawFd(this.songItem.src);
     }
     this.songItem = null;

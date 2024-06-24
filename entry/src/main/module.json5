@@ -35,7 +35,11 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.READ_MEDIA"
+        "name": "ohos.permission.READ_MEDIA",
+        "name": "ohos.permission.INTERNET",
+        "usedScene": {
+          "when": "always"
+        }
       }
     ]
   }

@@ -1,14 +1,21 @@
 import media from '@ohos.multimedia.media';
 import common from '@ohos.app.ability.common';
 import display from '@ohos.display';
+import { MusicList } from '../viewmodel/MusicListViewModel';
+import router from '@ohos.router';
+import http from '@ohos.net.http';
+import request from '@ohos.request';
+import axios from '@ohos/axios';
+
+let httpRequest = http.createHttp();
+
 @Entry
 @Component
 struct Index {
   @State screenWidth:number = px2vp(display.getDefaultDisplaySync().width)
   @State screenHeight:number = px2vp(display.getDefaultDisplaySync().height)
-  //模拟器可以将屏幕尺寸按如下设置
-  // @State screenWidth:number = 330
-  // @State screenHeight:number = 780
+  //@State screenWidth:number = 330
+  //@State screenHeight:number = 815
 
   @State rotateAngle:number=0;
   @State isPlay:boolean = false;
@@ -29,13 +36,9 @@ struct Index {
   private avPlayer?: media.AVPlayer = undefined;
   @State listViewPosition:number = this.screenHeight
 
-  @State musicList:MusicClass[] = [
-    new MusicClass('Never Really Easy','Stephanie Poetri','NeverReallyEasy.mp3','NeverReallyEasy.png'),
-    new MusicClass('Only Lovers','Ronan Keating','onlylovers.mp3','onlylovers.png'),
-    new MusicClass('Bumping Up and Down','Raffi','BumpingUpandDown.mp3','BumpingUpandDown.png')
-  ]
 
-  @State currentMusic:MusicClass = this.musicList[0]
+
+  @State currentMusic:MusicClass = MusicList[0]
   @State currentIndex:number = 0
 
   onPageShow(): void {
@@ -81,7 +84,7 @@ struct Index {
     // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址
     // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度
     let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd(this.musicList[this.currentIndex].url);
+    let fileDescriptor = await context.resourceManager.getRawFd(MusicList[this.currentIndex].url);
     let avFileDescriptor: media.AVFileDescriptor =
       { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
     this.isSeek = false; // 支持seek操作
@@ -151,7 +154,7 @@ struct Index {
           console.info('AVPlayer state completed called.');
         // avPlayer.stop(); //调用播放结束接口
         // this.endRotate();
-          if(this.currentIndex < this.musicList.length - 1){
+          if(this.currentIndex < MusicList.length - 1){
             this.currentIndex += 1
             this.changeSong()
           }else {
@@ -242,6 +245,7 @@ struct Index {
         Row() {
           Image($r('app.media.nav_down'))
             .size({ width: 25, height: 25 })
+            .onClick(() => {router.pushUrl({url: 'pages/fileread'})})
           Row(){
             Text('相关')
               .fontSize(14)
@@ -257,6 +261,10 @@ struct Index {
           }
           Image($r('app.media.nav_share'))
             .size({ width: 25, height: 25 })
+            .onClick(() => {
+              executePythonCode('')
+                .then(result => console.log(result))
+                .catch(error => console.error(error));})
         }
         .width('100%')
         .height(68)
@@ -264,7 +272,7 @@ struct Index {
         .justifyContent(FlexAlign.SpaceBetween)
 
         Row(){
-          Image($rawfile(this.musicList[this.currentIndex].cover))
+          Image($rawfile(MusicList[this.currentIndex].cover))
             .width(this.screenWidth - 50)
             .height(this.screenWidth - 50)
             .borderRadius((this.screenWidth - 50)/2)
@@ -276,11 +284,11 @@ struct Index {
         .width('100%')
 
         Column(){
-          Text(this.musicList[this.currentIndex].title)
+          Text(MusicList[this.currentIndex].title)
             .fontColor('#222628')
             .fontSize(24)
 
-          Text(this.musicList[this.currentIndex].singer)
+          Text(MusicList[this.currentIndex].singer)
             .fontColor('#76777A')
             .fontSize(14)
             .margin({top:10})
@@ -356,7 +364,7 @@ struct Index {
               .objectFit(ImageFit.Auto)
               .onClick(()=>{
 
-                if(this.currentIndex < this.musicList.length - 1){
+                if(this.currentIndex < MusicList.length - 1){
                   this.currentIndex += 1
                   this.changeSong()
                 }
@@ -370,7 +378,7 @@ struct Index {
                   duration: 200,
                 }, () => {
 
-                  let y = 20 + 40 + 62*this.musicList.length
+                  let y = 20 + 40 + 62*MusicList.length
                   this.listViewPosition = this.screenHeight - y
                 })
               })
@@ -391,7 +399,7 @@ struct Index {
         colors: [[0xE0EEFF, 0.0], [0xE4F2FF, 0.3], [0xFBD4FF, 1]]
       })
 
-      ListView({musicList:$musicList,currentIndex:this.currentIndex,isPlaying:this.isPlay,
+      ListView({MusicList:MusicList,currentIndex:this.currentIndex,isPlaying:this.isPlay,
         playAction:(index:number)=>{
           this.currentIndex = index
           if(!this.isPlay){
@@ -411,11 +419,7 @@ struct Index {
           })
         }})
         .position({y:this.listViewPosition})
-
     }
-
-
-
   }
 }
 
@@ -438,7 +442,7 @@ class MusicClass{
 @CustomDialog
 export struct ListView {
   controller: CustomDialogController
-  @Link musicList: MusicClass[]
+  MusicList: MusicClass[]
   @Prop currentIndex: number
   @Prop isPlaying: boolean
 
@@ -482,7 +486,8 @@ export struct ListView {
           })
       )
 
-      Row(){
+      Row()
+      {
         Text('当前播放')
           .fontSize(17)
           .fontWeight(600)
@@ -495,43 +500,50 @@ export struct ListView {
         .width('100%')
         .height(0.8)
         .backgroundColor('rgb(226,226,226)')
-      List({space:0}){
-        ForEach(this.musicList,(item:MusicClass,index)=>{
-          ListItem(){
-            Row(){
-              Column(){
-                Text(item.title)
-                  .fontColor('#222628')
-                  .fontSize(16)
-                Text(item.singer)
-                  .fontColor('#76777A')
-                  .fontSize(12)
-                  .margin({top:8})
-              }
-              .alignItems(HorizontalAlign.Start)
 
-              if(this.currentIndex == index && this.isPlaying){
-                Image($r('app.media.list_pause'))
-                  .width(28)
-                  .height(28)
-                  .onClick(()=>{
-                    this.pauseAction()
-                  })
-              }else{
-                Image($r('app.media.list_play'))
-                  .width(28)
-                  .height(28)
-                  .onClick(()=>{
-                    this.playAction(index)
-                  })
+      List({space:0}) {
+        ForEach(MusicList,(item:MusicClass,index)=>
+        {
+          ListItem(){
+            Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center})
+            {
+              Row()
+              {
+                Column()
+                {
+                  Text(item.title)
+                    .fontColor('#222628')
+                    .fontSize(16)
+                  Text(item.singer)
+                    .fontColor('#76777A')
+                    .fontSize(12)
+                    .margin({top:8})
+                }
+                .alignItems(HorizontalAlign.Start)
+                if(this.currentIndex == index && this.isPlaying)
+                {
+                  Image($r('app.media.list_pause'))
+                    .width(28)
+                    .height(28)
+                    .onClick(()=>{
+                      this.pauseAction()
+                    })
+                }else{
+                  Image($r('app.media.list_play'))
+                    .width(28)
+                    .height(28)
+                    .onClick(()=>{
+                      this.playAction(index)
+                    })
+                }
               }
+              .alignItems(VerticalAlign.Center)
+              .justifyContent(FlexAlign.SpaceBetween)
+              .width('100%')
+              .height(62)
             }
-            .alignItems(VerticalAlign.Center)
-            .justifyContent(FlexAlign.SpaceBetween)
-            .width('100%')
-            .height(62)
           }
-        })
+        }, item => item)
       }
       .divider({strokeWidth:0.5,color:'rgb(236,236,236)'})
       .padding({left:20,right:20})
@@ -541,6 +553,38 @@ export struct ListView {
     .backgroundColor(Color.White)
     .borderRadius({topLeft:20,topRight:20})
     .shadow({ radius: 30, color: 'rgba(230,230,230,0.7)', offsetX: 0, offsetY: -20 })
-
   }
 }
+
+
+async function executePythonCode(code: string) {
+  try {
+    const response = await axios.post('http://127.0.0.0:5000/execute', {
+      code: code
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+/*
+async function executePythonCode(code: string) {
+  try {
+    let url = "https://EXAMPLE_URL";
+    let response = httpRequest.request(
+      url, {
+        method: http.RequestMethod.POST,
+        connectTimeout: 60000,
+        readTimeout: 60000,
+      });
+    return response.then();
+  } catch (error) {
+    throw error;
+  }
+}
+*
+* python -m spleeter separate inn\yuyi.mp3 -p spleeter:2stems -o ouu
+*
+*
+*/

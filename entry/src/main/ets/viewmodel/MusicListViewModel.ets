@@ -14,13 +14,26 @@
  */
 import { SongItem } from './SongData';
 
-const MusicList: SongItem[] = [
-  { id: 1, title: '1111', singer: 'aaaa', mark: $r('app.media.ic_vip'),
-    label: $r('app.media.ic_avatar1'), src: 'boisterous.wav', index:0},
-  { id: 2, title: '2222', singer: 'bbbb', mark: $r('app.media.ic_sq'),
-    label: $r('app.media.ic_avatar2'), src: 'dynamic.wav', index:1 },
-  { id: 3, title: '3333', singer: 'cccc', mark: $r('app.media.ic_vip'),
-    label: $r('app.media.ic_avatar16'), src: 'dynamic.wav', index:2 }
+class MusicClass{
+
+  title:string
+  singer:string
+  url:string
+  cover:string
+
+  constructor(title:string,singer:string,url:string,cover:string) {
+    this.title = title
+    this.singer = singer
+    this.url = url
+    this.cover = cover
+  }
+}
+
+const MusicList: MusicClass[] = [
+  new MusicClass('Never Really Easy','Stephanie Poetri','NeverReallyEasy.mp3','NeverReallyEasy.png'),
+  new MusicClass('Only Lovers','Ronan Keating','onlylovers.mp3','onlylovers.png'),
+  new MusicClass('Bumping Up and Down','Raffi','BumpingUpandDown.mp3','BumpingUpandDown.png'),
+  new MusicClass('yuyi','yorushika','yuyi.mp3','yuyi.png')
 ]
 
 export { MusicList }

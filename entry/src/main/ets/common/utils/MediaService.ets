@@ -35,6 +35,7 @@ export class MediaService {
   private context: common.UIAbilityContext | undefined = AppStorage.Get('context');
   public avPlayer: media.AVPlayer | null = null;
   private songItemBuilder: SongItemBuilder;
+  // @ts-ignore
   private songItem: SongItem = new SongItem();
   private playMode: MusicPlayMode = MusicPlayMode.ORDER;
   private state: AudioPlayerState = AudioPlayerState.IDLE;

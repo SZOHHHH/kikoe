@@ -9,6 +9,7 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "@smarthane/drawer-layout": "^1.0.4"
+    "@smarthane/drawer-layout": "^1.0.4",
+    "@ohos/axios": "^2.2.0"
   }
 }

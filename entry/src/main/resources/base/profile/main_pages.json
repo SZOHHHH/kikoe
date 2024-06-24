@@ -2,8 +2,8 @@
   "src": [
     "pages/Index",
     "pages/tabs",
-    "pages/musicdetail",
     "pages/fileread",
-    "pages/newmusic"
+    "pages/newmusic",
+    "pages/updownindex"
   ]
 }

@@ -10,7 +10,235 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "multi device"
+    },
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "live_title",
+      "value": "Dandelion Live"
+    },
+    {
+      "name": "live_one",
+      "value": "Drunk beauty snow mountain"
+    },
+    {
+      "name": "live_one_introduction",
+      "value": "Well-known travel bloggers take you to see the most beautiful snow-capped mountains in Yunnan."
+    },
+    {
+      "name": "live_two",
+      "value": "Quickly make reduced fat meals"
+    },
+    {
+      "name": "live_two_introduction",
+      "value": "Professional dietitian takes you together in 5 minutes to get a nutritious salad."
+    },
+    {
+      "name": "live_three",
+      "value": "The world of insects"
+    },
+    {
+      "name": "live_three_introduction",
+      "value": "Zoologists take you through the third world of insects."
+    },
+    {
+      "name": "comment_title",
+      "value": "comment"
+    },
+    {
+      "name": "wonderful_comment",
+      "value": "Wonderful review（999+）"
+    },
+    {
+      "name": "new_comment",
+      "value": "Latest Reviews"
+    },
+    {
+      "name": "collection_num",
+      "value": "125000"
+    },
+    {
+      "name": "list_name",
+      "value": "Independent folk"
+    },
+    {
+      "name": "playlist_Introduction",
+      "value": "The set list is a selection of popular folk songs."
+    },
+    {
+      "name": "play_all",
+      "value": "Play all(%d)"
+    },
+    {
+      "name": "collect",
+      "value": "collect"
+    },
+    {
+      "name": "download",
+      "value": "download"
+    },
+    {
+      "name": "share",
+      "value": "share"
+    },
+    {
+      "name": "play_list",
+      "value": "play list"
+    },
+    {
+      "name": "song_name",
+      "value": "I don't know"
+    },
+    {
+      "name": "singer",
+      "value": "Hello xiao wan"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "music_title",
+      "value": "Folk Soul"
+    },
+    {
+      "name": "music_description",
+      "value": "The song list selects some of the more concerned folk songs, a folk song soothes life."
+    },
+    {
+      "name": "button_music",
+      "value": "Playing music"
+    },
+    {
+      "name": "live_description",
+      "value": "I've selected some of the live features that everyone likes."
+    },
+    {
+      "name": "button_live",
+      "value": "Watch Live"
+    },
+    {
+      "name": "reason_background",
+      "value": "keep background running"
+    },
+    {
+      "name": "upload",
+      "value": "Upload"
+    },
+    {
+      "name": "upload_fail",
+      "value": "Upload fail,resume upload later"
+    },
+    {
+      "name": "upload_success",
+      "value": "Upload success,continue upload"
+    },
+    {
+      "name": "uploading",
+      "value": "Uploading"
+    },
+    {
+      "name": "user_tip",
+      "value": "Feature development"
+    },
+    {
+      "name": "open",
+      "value": "Open"
+    },
+    {
+      "name": "anyone",
+      "value": "Anyone"
+    },
+    {
+      "name": "gps",
+      "value": "Location"
+    },
+    {
+      "name": "tip",
+      "value": "Thoughts of the moment..."
+    },
+    {
+      "name": "pick_album",
+      "value": "Pick from album"
+    },
+    {
+      "name": "ok",
+      "value": "OK"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "check_file_tips",
+      "value": "Please check files"
+    },
+    {
+      "name": "download_to",
+      "value": "Select a download location"
+    },
+    {
+      "name": "view_download_files",
+      "value": "View download files"
+    },
+    {
+      "name": "download_finish",
+      "value": "Download finish"
+    },
+    {
+      "name": "download_fail",
+      "value": "Download fail"
+    },
+    {
+      "name": "pause",
+      "value": "Pause"
+    },
+    {
+      "name": "downloading",
+      "value": "Downloading"
+    },
+    {
+      "name": "continue",
+      "value": "Continue"
+    },
+    {
+      "name": "media_permission",
+      "value": "Allows the app to read media file information from the user's external storage"
+    },
+    {
+      "name": "media_internet_permission",
+      "value": "Allow access to the network"
+    },
+    {
+      "name": "background_tips",
+      "value": "Whether to start background tasks"
+    },
+    {
+      "name": "home_tips",
+      "value": "Demonstrate foreground and background upload and download tasks"
+    },
+    {
+      "name": "background_task_start",
+      "value": "The background task has started, and you can check the download status in the notification bar"
+    },
+    {
+      "name": "net_pause",
+      "value": "Network about, download pause"
+    },
+    {
+      "name": "net_resume",
+      "value": "Network resume, download continue"
     }
   ]
 }
