@@ -2,8 +2,10 @@ import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 import router from '@ohos.router'
 import request from '@ohos.request';
-import { FormData } from '@ohos/axios';
 import http from '@ohos.net.http';
+import file from '@ohos.file.fs'
+import { FormData } from '@ohos/axios'
+import { MusicList } from '../viewmodel/MusicListViewModel';
 
 @Entry//表示该自定义组件为入口组件
 @Component //表示自定义组件
@@ -31,7 +33,8 @@ struct Index { //表示组件中的状态变量，状态变量变化会触发UI�
           this.submitValue = value
           this.uploadUri = this.submitValue
           this.uploadFile()
-          router.pushUrl({ url: 'pages/newmusic'})
+          router.pushUrl({ url: 'pages/yuyi'})
+          MusicList.push(new MusicClass('yuyi','yorushika','yuyi.mp3','yuyi.png'))
           /*
           let fdPath = 'fd://';
           let context = getContext(this) as common.UIAbilityContext;
@@ -67,49 +70,44 @@ struct Index { //表示组件中的状态变量，状态变量变化会触发UI�
   }
 
   async uploadFile() {
-
-    let context = getContext(this) as common.UIAbilityContext
-    let segments = this.uploadUri.split('/')
-    //文件名称
-    let fileName = segments[segments.length-1]
-    this.msgHistory += `文件名称：${fileName}\r\n`
-    //计划复制到的目标路径
-    let realUri = context.cacheDir + "/" + fileName
-
-    //复制选择的文件到沙箱cache文件夹
-    try {
-      let file = await fs.open(this.uploadUri);
-      fs.copyFileSync(file.fd, realUri);
-      this.msgHistory += '复制到cache成功\r\n'
-    } catch (err) {
-      this.msgHistory += 'err.code : ' + err.code + ', err.message : ' + err.message;
-    }
-
-    let uploadTask: request.UploadTask
-    let uploadConfig: request.UploadConfig = {
-      url: this.uploadUrl,
-      header: { 'Accept': '*/*' },
-      method: "POST",
-      files: [{ filename: fileName, name: "file", uri: `internal://cache/${fileName}`, type: "mp3" }],
-      data: [{ name: 'name', value: 'value' }],
-    };
+    const url: string = 'http://127.0.0.1:5000/upload';
+    const filePath: string = 'yuyi.mp3';
 
     try {
-      request.uploadFile(context, uploadConfig).then((data) => {
-        uploadTask = data;
-        uploadTask.on("progress", (size, totalSize) => {
-          this.msgHistory += `上传进度：${size}/${totalSize}\r\n`
-        })
-        uploadTask.on("complete", () => {
-          this.msgHistory += "上传完成\r\n"
-        })
-      }).catch((e) => {
-        this.msgHistory += "请求失败：" + e.message + "\r\n"
-      })
-    } catch (err) {
-      this.msgHistory += 'err.code : ' + err.code + ', err.message : ' + err.message;
-    }
+      const formData = new FormData();
+      formData.append('file', filePath);
 
+      const httpRequest = http.createHttp();
+      const response = await httpRequest.request(url, {
+        method: http.RequestMethod.POST,
+        extraData: formData,
+        header: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      if (response.responseCode === 200) {
+        console.info('File uploaded successfully.');
+      } else {
+        console.error('Upload failed.');
+      }
+    } catch (error) {
+    console.error('Error during file upload:', error);
+    }
   }
+}
 
+class MusicClass{
+
+  title:string
+  singer:string
+  url:string
+  cover:string
+
+  constructor(title:string,singer:string,url:string,cover:string) {
+    this.title = title
+    this.singer = singer
+    this.url = url
+    this.cover = cover
+  }
 }

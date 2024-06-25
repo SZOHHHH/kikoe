@@ -1,7 +1,7 @@
 import {main} from './main'
 import {list} from './list'
-import {community} from './community'
-import {config} from './config'
+import {community} from './community1'
+import {config} from './config1'
 
 @Entry
 @Component

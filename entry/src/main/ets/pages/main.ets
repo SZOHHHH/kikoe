@@ -78,12 +78,28 @@ export struct main {
         .backgroundImage('assets/daoru.png')
         .backgroundImageSize(ImageSize.Cover)
         .backgroundImagePosition(Alignment.Center)
+        .borderRadius(20)
       }
       .borderRadius(20)
       .width(320)
       .height(200)
       .border({ width:'8px', color:'#ffb5b5b5' })
       .onClick(() => {router.pushUrl({url: 'pages/fileread'})})
+      Button({ type: ButtonType.Normal, stateEffect: true })
+      {
+        Row() {}
+        .width('100%')
+        .height('100%')
+        .backgroundImage('assets/zhaopian.png')
+        .backgroundImageSize(ImageSize.Cover)
+        .backgroundImagePosition(Alignment.Center)
+        .borderRadius(20)
+      }
+      .borderRadius(20)
+      .width(320)
+      .height(200)
+      .border({ width:'8px', color:'#ffb5b5b5' })
+      .onClick(() => {router.pushUrl({url: 'pages/yuyi'})})
     }
     .justifyContent(FlexAlign.Start)
     .width('100%')

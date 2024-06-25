@@ -30,10 +30,16 @@ class MusicClass{
 }
 
 const MusicList: MusicClass[] = [
-  new MusicClass('Never Really Easy','Stephanie Poetri','NeverReallyEasy.mp3','NeverReallyEasy.png'),
-  new MusicClass('Only Lovers','Ronan Keating','onlylovers.mp3','onlylovers.png'),
-  new MusicClass('Bumping Up and Down','Raffi','BumpingUpandDown.mp3','BumpingUpandDown.png'),
-  new MusicClass('yuyi','yorushika','yuyi.mp3','yuyi.png')
+  new MusicClass('glow','keeno','glow.mp3','glow.png'),
+  new MusicClass('glow-accompaniment','keeno','glow-accompaniment.wav','glow.png'),
+  new MusicClass('glow-vocals','keeno','glow-vocals.wav','glow.png'),
+  new MusicClass('yours','keeno','yours.mp3','yours.png'),
+  new MusicClass('yours-accompaniment','keeno','yours-accompaniment.wav','yours.png'),
+  new MusicClass('yours-vocals','keeno','yours-vocals.wav','yours.png'),
+  new MusicClass('aoi','yorushika','aoi.mp3','aoi.png'),
+  new MusicClass('aoi-accompaniment','yorushika','aoi-accompaniment.wav','aoi.png'),
+  new MusicClass('aoi-vocals','yorushika','aoi-vocals.wav','aoi.png'),
+  //new MusicClass('yuyi','yorushika','yuyi.mp3','yuyi.png'),
 ]
 
 export { MusicList }
